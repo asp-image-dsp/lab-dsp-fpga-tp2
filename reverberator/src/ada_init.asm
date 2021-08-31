@@ -257,7 +257,7 @@ ssi_rx_isr
 	nop
 	nop
 	movep	#$0001,X:M_HDR 	;1->PB0, sube el pin
-        fir     ntaps           ;do fir
+  move x0,a;      fir     ntaps           ;do fir
 	movep	#$0000,X:M_HDR 	;0->PB0, baja el pin
 ;=====================================
 	nop
