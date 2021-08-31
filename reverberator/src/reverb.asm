@@ -1,54 +1,31 @@
 ; --------------------------------------------------------------------
-;	file				reverb.asm
+;	file					reverb.asm
 ;	author				Grupo 2
-;	date				20210830
-;	description			Reverberation
+;	date					20210830
+;	description		Reverberation
 ; --------------------------------------------------------------------
 
-; -----------------------------------------------------------------
-; Constants
-; -----------------------------------------------------------------		
-N		EQU			256
-E1		EQU			0.5
-E2		EQU			0.25
-
-; -----------------------------------------------------------------
-; X Data Memory
-; -----------------------------------------------------------------		
-		ORG			X:$0000
-		DC			E1
-		DC			E2
-		
-; --------------------------------------------------------------------
-; Program Memory
-; --------------------------------------------------------------------
-			    ORG			P:$E000
-          
 ; ====================================================================
+; reverb
+;
 ; Given the current sample in X0, the reverberated output is returned
-; in A register. The reverberation has a delay of N samples.
-; 
+; in the A accumulator. The reverberation has a delay of N samples.
 ; Registers R0 and M0 are used.
 ;
-; @param X0 Current sample
-;
+; @param X0 Input sample 
+; @return A Output sample
 ; ====================================================================
-        
-				
-		; Initialization of registers
-		MOVE	#$0,A
-		MOVE	X:#$0000,Y0		; Coeff E1->Y0 
-		MOVE	X:#$0001,Y1		; Coeff E2->Y1
-		; Read new sample
-		; 
+			; Initialization of registers
 
-		MOVE	A,X1
-		MPY		Y1,X1,A		; A = y(n)*E2
-		ADD		X0,A		; A = x(n) + y(n)*E2
-		; Delay -> A = A(n - M)
-		MPY		Y1,X0,A		; A = Delayed output times E1
-		ADD		X0,A		; A = y(n) = x(n) + delayed * E1 
-		
-		
-		
-        
+			; Compute Y(n) and save it into the accumulator
+			MOVE 		X:$1000,Y0			; Y0 = E1
+			MOVE 		X:$1001,Y1			; Y1 = E2
+			MOVE 		X:(R0),X1				; X1 = W(n-N)
+			MPY 		X1,Y0,A					; A = W(n-N).E1
+			ADD 		X0,A						; A = W(n-N).E1 + X(n) = Y(n)
+
+			; Compute W(n) and save it into the delay buffer
+			MOVE 		A,X1					; X1 = Y(n)
+			MPY 		X1,Y1,B				; B = Y(n).E2
+			ADD 		X0,B					; B = Y(n).E2 + X(n)
+			MOVE		B,X:(R0)+			; W(n) = Y(n).E2 + X(n)

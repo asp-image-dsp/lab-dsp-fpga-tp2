@@ -45,6 +45,19 @@ states  dsm     ntaps           ;filter states
 
 endtap	equ	*
 
+; -----------------------------------------------------------------
+; Constants
+; -----------------------------------------------------------------		
+N	EQU			4096
+
+; -----------------------------------------------------------------
+; X Data Memory
+; -----------------------------------------------------------------		
+	ORG			X:$1000
+E1			DC			0.7
+E2			DC			0.4
+delay_start		DSM			N
+
 
         org     p:$100
 START
@@ -60,9 +73,8 @@ main
 				move    X0,x:bits
 
 
-	
-inifil	move    #states,r0      ;point to filter states
-        move    #ntaps-1,m0     ;mod(ntaps)
+inifil	move    #delay_start,r0      ;point to filter states
+        move    #N-1,m0     ;mod(ntaps)
         move    #coef,r4        ;point to filter coefficients
         move    #ntaps-1,m4     ;mod(ntaps), nro. de coeficientes
 	
