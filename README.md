@@ -1,4 +1,4 @@
-# lab-dsp-fpga-tp1
+# lab-dsp-fpga-tp2
 Coursework 01 for the DSP laboratory at ITBA. Understanding the Motorola's DSP 56K architecture and programming model.
 
 ## Project's directory structure
