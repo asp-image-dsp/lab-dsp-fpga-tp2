@@ -48,8 +48,9 @@ output			DC			11
 ; -----------------------------------------------------------------
 ; Program Memory
 ; -----------------------------------------------------------------
-
 				ORG			P:$E000
+        INCLUDE	'reverb.asm'
+
 main			EQU			*
 				; Initialization of accumulators and registers
 				MOVE		#DELAY_LEN-1,M0
@@ -60,7 +61,7 @@ main			EQU			*
 				; Main code
 				DO			#INPUT_LEN,m_loop
 				MOVE		X:(R1)+,X0
-        INCLUDE			'reverb.asm'
+				JSR			reverb
 				MOVE		A,Y:(R4)+
 m_loop
 				END			main

@@ -252,12 +252,8 @@ ssi_rx_isr
         jclr    #Left_ch,X:bits,esright 
         
 ;=====================================
-	bchg	#0,x:M_HDR
-	nop
-	nop
-	nop
 	movep	#$0001,X:M_HDR 	;1->PB0, sube el pin
-	include 'reverb.asm'
+	jsr reverb
 	movep	#$0000,X:M_HDR 	;0->PB0, baja el pin
 ;=====================================
 	nop
