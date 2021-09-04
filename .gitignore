@@ -6,3 +6,6 @@
 *.cld
 *.cln
 *.tmp
+
+# Ignore the build/ folder
+build/
