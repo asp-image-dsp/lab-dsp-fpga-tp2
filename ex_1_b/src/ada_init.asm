@@ -252,16 +252,17 @@ ssi_rx_isr
         jclr    #Left_ch,X:bits,esright 
         
 ;=====================================
-	bchg	#0,x:M_HDR
-	nop
-	nop
-	nop
 	movep	#$0001,X:M_HDR 	;1->PB0, sube el pin
-    fir     ntaps           ;do fir
+    ; Run the FIR
+		fir     ntaps
 	movep	#$0000,X:M_HDR 	;0->PB0, baja el pin
 ;=====================================
-	nop
+	; Compensation of the board attenuation
 	move	a,x0
+	move  #0.5445,y0
+	mpy   x0,y0,a
+	asl		#2,a,a
+	move  a,x0
 	jmp	endisr
 	       
 	
