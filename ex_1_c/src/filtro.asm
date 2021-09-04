@@ -37,7 +37,7 @@ datout  equ     $fffe           ;location in Y memory of output file
 	include 'coef.txt'	;este archivo contiene los coeficientes
 
         org     x:0
-        
+tst            ds                      1
 bits		ds			1
 states  dsm     ntaps           ;filter states
 

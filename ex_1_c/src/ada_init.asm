@@ -252,6 +252,8 @@ ssi_rx_isr
         jclr    #Left_ch,X:bits,esright 
         
 ;=====================================
+	move x:tst,x1
+ 	movep   x1,x:M_TX00        	; write d/a data
 	movep	#$0001,X:M_HDR 	;1->PB0, sube el pin
         fir     ntaps           ;do fir
 	movep	#$0000,X:M_HDR 	;0->PB0, baja el pin
@@ -259,11 +261,12 @@ ssi_rx_isr
 	; Compensation of the board attenuation
 	nop
 	move	a,x0
+	move   x0,x:tst
 	jmp	endisr
 	
 esright move	#0,x0			;mute the other channel
     
-endisr  movep   x0,x:M_TX00        	; write d/a data
+endisr  nop        	; write d/a data
 	bchg	#Left_ch,x:bits
 	rti
 
