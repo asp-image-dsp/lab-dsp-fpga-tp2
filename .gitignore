@@ -9,3 +9,5 @@
 
 # Ignore the build/ folder
 build/
+
+*/.ipynb_checkpoints/
