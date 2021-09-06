@@ -3,9 +3,11 @@ Coursework 02 for the DSP laboratory at ITBA. Understanding the Motorola's DSP 5
 
 ## Project's directory structure
 * **assignment/**: Description of the assignment
-* **compiler/**: Contains Motorola's DSP 56002 toolchain
-* **src/**: Source code for the DSP using assembly language (*.asm)
-* **tools/**: Tools to improve the development experience using the toolchain
+* **resources/**: Contains resources (images and support files)
+* **ex_1_a/**: Exercise 1.a project (DSP56307)
+* **ex_1_b/**: Exercise 1.b project (DSP56307)
+* **ex_1_c/**: Exercise 1.c project (DSP56307)
+* **ex_2/**: Exercise 2 project (DSP56307)
 
 ## Workflow
 Here we describe how to compile, link and run the assembly program in the simulator. Here it is assumed that the assembly source code is located at the **src/**, as it should.
