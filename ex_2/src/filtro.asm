@@ -35,8 +35,8 @@ main
                 MOVE    X0,X:bits
 inifil	        MOVE    #buffer,R0              ; Pointer to the delay buffer
                 MOVE    #N-1,M0                 ; Size of the delay buffer
-                MOVE    #E1,R1               ; Pointer to the E1 coefficient
-                MOVE    #E2,R2               ; Pointer to the E2 coefficient
+                MOVE    #E1,R1                  ; Pointer to the E1 coefficient
+                MOVE    #E2,R2                  ; Pointer to the E2 coefficient
 ;******************************************************************************
 	        MOVEP	#$0001,X:M_HPCR 	; Port B I/O mode select
 	        MOVEP	#$0001,X:M_HDDR 	; PB0 out

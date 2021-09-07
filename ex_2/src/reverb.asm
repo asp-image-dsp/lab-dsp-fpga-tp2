@@ -19,8 +19,8 @@
 ; @return 	A Output sample
 ; ====================================================================
 					; Compute Y(n) and save it into the accumulator
-reverb		MOVE 		X:$1000,Y0				; Y0 = E1
-					MOVE 		X:$1001,Y1				; Y1 = E2
+reverb		MOVE 		X:(R1),Y0				; Y0 = E1
+					MOVE 		X:(R2),Y1			; Y1 = E2
 					MOVE 		X:(R0),X1				; X1 = W(n-N)
 					MPY 		X1,Y0,A					; A = W(n-N).E1
 					ADD 		X0,A						; A = W(n-N).E1 + X(n) = Y(n)
